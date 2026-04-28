@@ -45,6 +45,9 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.DoctorView
                 intent.putExtra("image", doctor.getImageResId());
                 intent.putExtra("hospital", doctor.getHospital());
                 intent.putExtra("phone", doctor.getPhone());
+                intent.putExtra("email", doctor.getEmail());
+                intent.putExtra("rating", doctor.getRating());
+                intent.putExtra("experience", doctor.getExperience());
                 intent.putExtra("bio", doctor.getBio());
 
                 context.startActivity(intent);

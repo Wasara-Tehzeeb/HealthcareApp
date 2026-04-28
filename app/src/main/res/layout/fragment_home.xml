@@ -220,6 +220,7 @@
                     app:tint="#8E8E93" />
 
                 <EditText
+                    android:id="@+id/etSearchDoctor"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@android:color/transparent"
@@ -227,7 +228,9 @@
                     android:textSize="14sp"
                     android:textColorHint="#8E8E93"
                     android:layout_marginStart="12dp"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:imeOptions="actionSearch"
+                    android:singleLine="true"/>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
