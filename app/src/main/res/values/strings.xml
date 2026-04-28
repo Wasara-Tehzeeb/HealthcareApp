@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Health Care App</string>
+    <string name="app_logo">App logo</string>
+    <string name="healthsync">HEALTHSYNC</string>
+    <string name="hello">HELLO</string>
+    <string name="welcome_to_healthsync">Welcome to HealthSync</string>
+    <string name="login">LOGIN</string>
+    <string name="signup">SIGNUP</string>
+    <string name="name">Name:</string>
+    <string name="enter_your_name">Enter Your Name</string>
+    <string name="email">Email:</string>
+    <string name="enter_your_email">Enter Your Email</string>
+    <string name="password">Password:</string>
+    <string name="enter_your_password">Enter Your Password</string>
+    <string name="confirm_password">Confirm Password:</string>
+    <string name="confirm_your_password">Confirm Your Password</string>
+    <string name="sign_up">SIGN UP</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="welcome">Welcome</string>
+    <string name="user">User</string>
+</resources>

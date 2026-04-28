@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F5F7FA">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#1056A6"
+        android:padding="16dp"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/icon_back"
+            app:tint="#FFFFFF"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Lab Tests and Checkups"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginStart="16dp"/>
+
+        <TextView
+            android:id="@+id/tvCartCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cart: 0"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="#FFFFFF">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:padding="16dp" android:gravity="center_vertical">
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/blood"
+                        android:background="#E8F0FE"
+                        android:padding="8dp"
+                        app:tint="#1063E0"/>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginStart="16dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Complete Blood Count (CBC)"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="#000000"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Measures blood components"
+                            android:textSize="12sp"
+                            android:textColor="#8E8E93"
+                            android:layout_marginTop="2dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Prep: Fasting 10hrs required"
+                            android:textSize="11sp"
+                            android:textColor="#FF9800"
+                            android:layout_marginTop="2dp"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="end">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="$25.00"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:textColor="#1056A6"/>
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnAdd1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:minHeight="48dp"
+                            android:minWidth="48dp"
+                            android:text="Add +"
+                            android:textSize="12sp"
+                            android:layout_marginTop="4dp"
+                            android:paddingHorizontal="16dp"
+                            app:cornerRadius="8dp"
+                            app:backgroundTint="#1056A6"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="#FFFFFF">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical">
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/blood"
+                        android:background="#E8F0FE"
+                        android:padding="8dp"
+                        app:tint="#1063E0"/>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginStart="16dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Basic Metabolic Panel"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="#000000"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Checks blood sugar and calcium"
+                            android:textSize="12sp"
+                            android:textColor="#8E8E93"
+                            android:layout_marginTop="2dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Prep: Fasting 8hrs required"
+                            android:textSize="11sp"
+                            android:textColor="#FF9800"
+                            android:layout_marginTop="2dp"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="end">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="$35.00"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:textColor="#1056A6"/>
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnAdd2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:minHeight="48dp"
+                            android:minWidth="48dp"
+                            android:text="Add +"
+                            android:textSize="12sp"
+                            android:layout_marginTop="4dp"
+                            android:paddingHorizontal="16dp"
+                            app:cornerRadius="8dp"
+                            app:backgroundTint="#1056A6"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="#FFFFFF">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical">
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/blood"
+                        android:background="#E8F0FE"
+                        android:padding="8dp"
+                        app:tint="#1063E0"/>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginStart="16dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Urinalysis"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="#000000"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Detects kidney disorders"
+                            android:textSize="12sp"
+                            android:textColor="#8E8E93"
+                            android:layout_marginTop="2dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Prep: Mid-stream urine sample"
+                            android:textSize="11sp"
+                            android:textColor="#FF9800"
+                            android:layout_marginTop="2dp"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="end">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="$15.00" android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:textColor="#1056A6"/>
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnAdd3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:minHeight="48dp"
+                            android:minWidth="48dp"
+                            android:text="Add +"
+                            android:textSize="12sp"
+                            android:layout_marginTop="4dp"
+                            android:paddingHorizontal="17dp"
+                            app:cornerRadius="8dp"
+                            app:backgroundTint="#1056A6"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="#FFFFFF">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical">
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/blood"
+                        android:background="#E8F0FE"
+                        android:padding="8dp"
+                        app:tint="#1063E0"/>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginStart="16dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Thyroid Function Test"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="#000000"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Checks thyroid levels"
+                            android:textSize="12sp"
+                            android:textColor="#8E8E93"
+                            android:layout_marginTop="2dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Prep: No preparation needed"
+                            android:textSize="11sp"
+                            android:textColor="#FF9800"
+                            android:layout_marginTop="2dp"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="end">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="$45.00"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:textColor="#1056A6"/>
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnAdd4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:minHeight="48dp"
+                            android:minWidth="48dp"
+                            android:text="Add +"
+                            android:textSize="12sp"
+                            android:layout_marginTop="4dp"
+                            android:paddingHorizontal="16dp"
+                            app:cornerRadius="8dp"
+                            app:backgroundTint="#1056A6"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#FFFFFF"
+        android:elevation="10dp"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your Cart"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/tvEmptyCart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="No tests added yet."
+            android:textSize="14sp"
+            android:textColor="#8E8E93"
+            android:gravity="center"
+            android:padding="8dp"
+            android:visibility="visible"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvCartList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxHeight="200dp"
+            android:nestedScrollingEnabled="true"
+            android:visibility="gone"/>
+    </LinearLayout>
+
+</LinearLayout>
