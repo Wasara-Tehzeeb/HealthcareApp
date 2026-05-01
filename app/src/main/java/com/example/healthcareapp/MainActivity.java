@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         addDefaultTestUsers();
         addDefaultSchedules();
+        addDefaultNotifications();
 
         new Handler().postDelayed(() -> {
             SharedPreferences sharedPreferences = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
@@ -163,6 +164,52 @@ public class MainActivity extends AppCompatActivity {
 
 
             prefs.edit().putBoolean("isScheduleSeeded", true).apply();
+        }
+    }
+
+    private void addDefaultNotifications() {
+        SharedPreferences prefs = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        if (!prefs.getBoolean("isNotificationSeeded", false)) {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+            Calendar cal = Calendar.getInstance();
+
+            String today = sdf.format(cal.getTime());
+
+            cal.add(Calendar.DAY_OF_MONTH, -1);
+            String yesterday = sdf.format(cal.getTime());
+
+            cal.add(Calendar.DAY_OF_MONTH, -1);
+            String twoDaysAgo = sdf.format(cal.getTime());
+
+            cal.add(Calendar.DAY_OF_MONTH, -1);
+            String threeDaysAgo = sdf.format(cal.getTime());
+
+            cal.add(Calendar.DAY_OF_MONTH, -2);
+            String fiveDaysAgo = sdf.format(cal.getTime());
+
+            NotificationHelper.saveNotification(this, "fatima@gmail.com", new Notification("NF001", "Appointment Reminder", "You have an upcoming checkup appointment today. Please arrive 10 minutes early.", "09:00", today, "Checkup", "Dr. Zeeshan"));
+            NotificationHelper.saveNotification(this, "fatima@gmail.com", new Notification("NF002", "Consultation Scheduled", "Your consultation with Dr. Ahad has been scheduled for tomorrow at Services Hospital.", "14:00", today, "Consultation", "Dr. Ahad"));
+            NotificationHelper.saveNotification(this, "fatima@gmail.com", new Notification("NF003", "Follow-up Reminder", "It's time for your follow-up visit with Dr. Hina regarding your previous treatment.", "16:00", today, "Follow up", "Dr. Hina"));
+            NotificationHelper.saveNotification(this, "fatima@gmail.com", new Notification("NF004", "Appointment Completed", "Your checkup with Dr. Emaan has been completed successfully. Reports will be available soon.", "11:00", yesterday, "Checkup", "Dr. Emaan"));
+            NotificationHelper.saveNotification(this, "fatima@gmail.com", new Notification("NF005", "Follow-up Completed", "Your follow-up with Dr. Khalid is complete. Please continue your prescribed medication.", "10:00", twoDaysAgo, "Follow up", "Dr. Khalid"));
+            NotificationHelper.saveNotification(this, "fatima@gmail.com", new Notification("NF006", "Appointment Cancelled", "Your appointment with Dr. Sara has been cancelled as per your request.", "15:00", twoDaysAgo, "Checkup", "Dr. Sara"));
+
+
+            NotificationHelper.saveNotification(this, "hamza@gmail.com", new Notification("NH001", "Consultation Reminder", "Your consultation with Dr. Wahaj is scheduled for today. Bring your previous X-rays.", "10:30", today, "Consultation", "Dr. Wahaj"));
+            NotificationHelper.saveNotification(this, "hamza@gmail.com", new Notification("NH002", "Checkup Scheduled", "Your child's checkup with Dr. Maria is scheduled for tomorrow at Jinnah Hospital.", "11:00", today, "Checkup", "Dr. Maria"));
+            NotificationHelper.saveNotification(this, "hamza@gmail.com", new Notification("NH003", "Appointment Completed", "Your checkup with Dr. Zeeshan is complete. MRI results are normal.", "09:00", twoDaysAgo, "Checkup", "Dr. Zeeshan"));
+            NotificationHelper.saveNotification(this, "hamza@gmail.com", new Notification("NH004", "Follow-up Due", "Please schedule a follow-up with Dr. Emaan for your skin treatment progress review.", "14:00", fiveDaysAgo, "Follow up", "Dr. Emaan"));
+            NotificationHelper.saveNotification(this, "hamza@gmail.com", new Notification("NH005", "Appointment Cancelled", "Your checkup with Dr. Khalid has been cancelled due to doctor's unavailability.", "09:00", threeDaysAgo, "Checkup", "Dr. Khalid"));
+
+
+            NotificationHelper.saveNotification(this, "zainab@gmail.com", new Notification("NZ001", "Checkup Reminder", "You have a checkup appointment scheduled for tomorrow at Evercare Hospital.", "11:00", today, "Checkup", "Dr. Hina"));
+            NotificationHelper.saveNotification(this, "zainab@gmail.com", new Notification("NZ002", "Consultation Today", "Your eye consultation with Dr. Sara is today. Please bring your previous prescription.", "13:00", today, "Consultation", "Dr. Sara"));
+            NotificationHelper.saveNotification(this, "zainab@gmail.com", new Notification("NZ003", "Follow-up Completed", "Your follow-up with Dr. Ahad is complete. Keep monitoring your heart health regularly.", "15:00", twoDaysAgo, "Follow up", "Dr. Ahad"));
+            NotificationHelper.saveNotification(this, "zainab@gmail.com", new Notification("NZ004", "Checkup Completed", "Your general checkup with Dr. Khalid has been completed. All vitals are normal.", "10:00", threeDaysAgo, "Checkup", "Dr. Khalid"));
+            NotificationHelper.saveNotification(this, "zainab@gmail.com", new Notification("NZ005", "Appointment Cancelled", "Your consultation with Dr. Wahaj has been cancelled as per your request.", "12:00", twoDaysAgo, "Consultation", "Dr. Wahaj"));
+            NotificationHelper.saveNotification(this, "zainab@gmail.com", new Notification("NZ006", "Appointment Cancelled", "Your checkup with Dr. Maria has been cancelled due to emergency at hospital.", "09:30", fiveDaysAgo, "Checkup", "Dr. Maria"));
+
+            prefs.edit().putBoolean("isNotificationSeeded", true).apply();
         }
     }
 }

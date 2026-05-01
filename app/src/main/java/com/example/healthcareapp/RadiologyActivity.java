@@ -63,6 +63,22 @@ public class RadiologyActivity extends AppCompatActivity implements CartAdapter.
                 new CheckupTest("Pelvic Ultrasound", "Uses sound waves to capture images", "Drink 4 glasses of water", "$120.00", R.drawable.radiology))
         );
 
+        findViewById(R.id.btnAddRad5).setOnClickListener(v -> addToCart(
+                new CheckupTest("MRI (Spine)", "Evaluates spinal cord and nerves", "Remove all metal objects", "$300.00", R.drawable.radiology))
+        );
+
+        findViewById(R.id.btnAddRad6).setOnClickListener(v -> addToCart(
+                new CheckupTest("CT Scan (Head)", "Detailed cross-sections of the brain", "No jewelry or metal allowed", "$220.00", R.drawable.radiology))
+        );
+
+        findViewById(R.id.btnAddRad7).setOnClickListener(v -> addToCart(
+                new CheckupTest("Abdominal Ultrasound", "Examines abdominal organs visually", "Fasting 6 hours required", "$150.00", R.drawable.radiology))
+        );
+
+        findViewById(R.id.btnAddRad8).setOnClickListener(v -> addToCart(
+                new CheckupTest("Mammogram", "Screening for breast tissue abnormalities", "Do not apply deodorant on the day", "$200.00", R.drawable.radiology))
+        );
+
         loadUserCart();
     }
 

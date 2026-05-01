@@ -13,6 +13,9 @@
         android:theme="@style/Theme.HealthCareApp"
         tools:replace="android:allowBackup,android:fullBackupContent">
         <activity
+            android:name=".BookAppointmentActivity"
+            android:exported="false" />
+        <activity
             android:name=".DoctorDetailsActivity"
             android:exported="false" />
         <activity

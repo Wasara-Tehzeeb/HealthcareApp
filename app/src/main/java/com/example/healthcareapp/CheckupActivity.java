@@ -63,6 +63,22 @@ public class CheckupActivity extends AppCompatActivity implements CartAdapter.On
                 new CheckupTest("Thyroid Function Test", "Checks thyroid levels", "No preparation needed", "$45.00", R.drawable.hospital))
         );
 
+        findViewById(R.id.btnAdd5).setOnClickListener(v -> addToCart(
+                new CheckupTest("Lipid Panel (Cholesterol)", "Measures cholesterol and triglycerides", "Fasting 12hrs required", "$30.00", R.drawable.blood))
+        );
+
+        findViewById(R.id.btnAdd6).setOnClickListener(v -> addToCart(
+                new CheckupTest("HbA1c (Diabetes Test)", "Measures average blood sugar levels", "No preparation needed", "$20.00", R.drawable.blood))
+        );
+
+        findViewById(R.id.btnAdd7).setOnClickListener(v -> addToCart(
+                new CheckupTest("Liver Function Test (LFT)", "Checks liver health and enzymes", "Fasting 10hrs required", "$40.00", R.drawable.blood))
+        );
+
+        findViewById(R.id.btnAdd8).setOnClickListener(v -> addToCart(
+                new CheckupTest("Vitamin D Test", "Checks vitamin D levels in blood", "No preparation needed", "$35.00", R.drawable.blood))
+        );
+
         loadUserCart();
     }
 

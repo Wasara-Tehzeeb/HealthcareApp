@@ -3,10 +3,13 @@ package com.example.healthcareapp;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.button.MaterialButton;
 
 public class DoctorDetailsActivity extends AppCompatActivity {
 
@@ -26,6 +29,7 @@ public class DoctorDetailsActivity extends AppCompatActivity {
         String bio = getIntent().getStringExtra("bio");
         String email = getIntent().getStringExtra("email");
         String experience = getIntent().getStringExtra("experience");
+        double rating = getIntent().getDoubleExtra("rating", 0.0);
 
         ImageView ivImage = findViewById(R.id.ivDetailImage);
         TextView tvName = findViewById(R.id.tvDetailName);
@@ -35,7 +39,11 @@ public class DoctorDetailsActivity extends AppCompatActivity {
         TextView tvPhone = findViewById(R.id.tvDetailPhone);
         TextView tvEmail = findViewById(R.id.tvDetailEmail);
         TextView tvBio = findViewById(R.id.tvDetailBio);
+        TextView tvDetailRating = findViewById(R.id.tvDetailRating);
+
+        ImageButton btnCallDoctor = findViewById(R.id.btnCallDoctor);
         ImageButton btnEmailDoctor = findViewById(R.id.btnEmailDoctor);
+        MaterialButton btnBookAppointment = findViewById(R.id.btnBookAppointment);
 
         ivImage.setImageResource(imageResId);
         tvName.setText(name);
@@ -45,6 +53,13 @@ public class DoctorDetailsActivity extends AppCompatActivity {
         tvPhone.setText(phone);
         tvEmail.setText(email);
         tvBio.setText(bio);
+        tvDetailRating.setText(rating + " ★");
+
+        btnCallDoctor.setOnClickListener(v -> {
+            Intent dialIntent = new Intent(Intent.ACTION_DIAL);
+            dialIntent.setData(Uri.parse("tel:" + phone));
+            startActivity(dialIntent);
+        });
 
         btnEmailDoctor.setOnClickListener(v -> {
             Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
@@ -52,6 +67,20 @@ public class DoctorDetailsActivity extends AppCompatActivity {
             emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Appointment Inquiry - " + name);
 
             startActivity(Intent.createChooser(emailIntent, "Send email using..."));
+        });
+
+        btnBookAppointment.setOnClickListener(v -> {
+            Intent intent = new Intent(DoctorDetailsActivity.this, BookAppointmentActivity.class);
+            intent.putExtra("name", name);
+            intent.putExtra("specialty", specialty);
+            intent.putExtra("image", imageResId);
+            intent.putExtra("hospital", hospital);
+            intent.putExtra("phone", phone);
+            intent.putExtra("email", email);
+            intent.putExtra("experience", experience);
+            intent.putExtra("bio", bio);
+            intent.putExtra("rating", rating);
+            startActivity(intent);
         });
     }
 }
