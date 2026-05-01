@@ -1,9 +1,15 @@
 package com.example.healthcareapp;
 
 import android.app.DatePickerDialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
@@ -11,6 +17,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.radiobutton.MaterialRadioButton;
@@ -167,10 +177,51 @@ public class BookAppointmentActivity extends AppCompatActivity {
 
             String scheduleId = "BK" + System.currentTimeMillis();
             Schedule newSchedule = new Schedule(scheduleId, doctorName, doctorSpecialty, doctorHospital, formattedDate, formattedTime, appointmentType, "upcoming");
-
             ScheduleHelper.saveSchedule(this, loggedInEmail, newSchedule);
+
+            String notificationMessage = "Your " + appointmentType.toLowerCase() + " with " + doctorName + " has been booked.";
+            NotificationHelper.saveNotification(this, loggedInEmail, new Notification("NT" + System.currentTimeMillis(), "Appointment Booked", notificationMessage, formattedTime, formattedDate, appointmentType, doctorName));
+
+            String readableDate = ScheduleHelper.formatDisplayDate(formattedDate);
+            String readableTime = ScheduleHelper.formatTime(formattedTime);
+            showBookingNotification(doctorName, appointmentType, readableDate, readableTime);
+
             Toast.makeText(this, "Appointment Booked Successfully!", Toast.LENGTH_LONG).show();
             finish();
         });
+    }
+
+    private void showBookingNotification(String doctorName, String type, String date, String time) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.POST_NOTIFICATIONS}, 101);
+                return;
+            }
+        }
+
+        String CHANNEL_ID = "booking_channel";
+        NotificationManager manager = getSystemService(NotificationManager.class);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, "Appointments", NotificationManager.IMPORTANCE_HIGH);
+            channel.setDescription("Appointment booking confirmations");
+            manager.createNotificationChannel(channel);
+        }
+
+        String fullMessage = "Your " + type.toLowerCase() + " with " + doctorName + " has been booked at " + date + ", " + time + ".";
+
+        Intent intent = new Intent(this, HomeActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
+                .setSmallIcon(R.drawable.logo_new)
+                .setContentTitle("Appointment Booked!")
+                .setContentText(fullMessage)
+                .setStyle(new NotificationCompat.BigTextStyle().bigText(fullMessage))
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setAutoCancel(true)
+                .setContentIntent(pendingIntent);
+
+        NotificationManagerCompat.from(this).notify(1001, builder.build());
     }
 }
