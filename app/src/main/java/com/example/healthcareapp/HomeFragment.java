@@ -1,16 +1,25 @@
 package com.example.healthcareapp;
 
 import android.app.AlertDialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.ContextCompat;
 
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -211,7 +220,49 @@ public class HomeFragment extends Fragment implements ScheduleAdapter.OnActionLi
             rvTodaySchedule.setVisibility(View.VISIBLE);
             tvNoScheduleToday.setVisibility(View.GONE);
             rvTodaySchedule.setAdapter(new ScheduleAdapter(getContext(), todaySchedules, this));
+            showTodayScheduleNotification(todaySchedules);
         }
+    }
+
+    private void showTodayScheduleNotification(List<Schedule> todaySchedules) {
+        if (Build.VERSION.SDK_INT >= 33) {
+            if (ContextCompat.checkSelfPermission(requireContext(), "android.permission.POST_NOTIFICATIONS") != PackageManager.PERMISSION_GRANTED) {
+                requireActivity().requestPermissions(new String[]{"android.permission.POST_NOTIFICATIONS"}, 101);
+                return;
+            }
+        }
+
+        if (Build.VERSION.SDK_INT >= 26) {
+            NotificationManager manager = (NotificationManager) requireContext().getSystemService(Context.NOTIFICATION_SERVICE);
+            NotificationChannel channel = new NotificationChannel("today_reminders", "Today's Schedule", NotificationManager.IMPORTANCE_HIGH);
+            channel.setDescription("Reminders for your appointments happening today");
+            manager.createNotificationChannel(channel);
+        }
+
+        StringBuilder messageBuilder = new StringBuilder();
+        for (int i = 0; i < todaySchedules.size(); i++) {
+            Schedule s = todaySchedules.get(i);
+            String timeStr = ScheduleHelper.formatTime(s.getTime());
+            messageBuilder.append(i + 1).append(". ").append(s.getDoctorName()).append(" at ").append(timeStr);
+            if (i < todaySchedules.size() - 1) {
+                messageBuilder.append("\n");
+            }
+        }
+
+        Intent intent = new Intent(requireContext(), HomeActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PendingIntent pendingIntent = PendingIntent.getActivity(requireContext(), 0, intent, PendingIntent.FLAG_IMMUTABLE);
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(requireContext(), "today_reminders")
+                .setSmallIcon(R.drawable.logo_new)
+                .setContentTitle("You have " + todaySchedules.size() + " appointment(s) today")
+                .setContentText(messageBuilder.toString())
+                .setStyle(new NotificationCompat.BigTextStyle().bigText(messageBuilder.toString()))
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setAutoCancel(true)
+                .setContentIntent(pendingIntent);
+
+        NotificationManagerCompat.from(requireContext()).notify(1003, builder.build());
     }
 
     @Override
@@ -220,10 +271,9 @@ public class HomeFragment extends Fragment implements ScheduleAdapter.OnActionLi
                 .setTitle("Cancel Appointment")
                 .setMessage("Are you sure you want to cancel your appointment with " + schedule.getDoctorName() + "?")
                 .setPositiveButton("Yes, Cancel", (dialog, which) -> {
-                    // Change status to cancelled in SharedPreferences
                     ScheduleHelper.updateScheduleStatus(getContext(), loggedInUserEmail, schedule.getId(), "cancelled");
                     Toast.makeText(getContext(), "Appointment Cancelled", Toast.LENGTH_SHORT).show();
-                    loadTodaySchedules(); // Reload UI so card disappears instantly
+                    loadTodaySchedules();
                 })
                 .setNegativeButton("No", null)
                 .show();
