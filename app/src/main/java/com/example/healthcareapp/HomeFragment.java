@@ -1,5 +1,6 @@
 package com.example.healthcareapp;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -20,7 +22,13 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class HomeFragment extends Fragment {
+import java.util.ArrayList;
+import java.util.List;
+
+public class HomeFragment extends Fragment implements ScheduleAdapter.OnActionListener{
+    private RecyclerView rvTodaySchedule;
+    private TextView tvNoScheduleToday;
+    private String loggedInUserEmail;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -34,6 +42,28 @@ public class HomeFragment extends Fragment {
         ImageButton btnRadiology = view.findViewById(R.id.btnRadiology);
 
         EditText etSearchDoctor = view.findViewById(R.id.etSearchDoctor);
+
+        rvTodaySchedule = view.findViewById(R.id.rvTodaySchedule);
+        tvNoScheduleToday = view.findViewById(R.id.tvNoScheduleToday);
+        TextView tvSeeAllSchedule = view.findViewById(R.id.tvSeeAllSchedule);
+
+        rvTodaySchedule.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvTodaySchedule.setNestedScrollingEnabled(false);
+
+        SharedPreferences prefs = requireActivity().getSharedPreferences("HealthCarePrefs", Context.MODE_PRIVATE);
+        loggedInUserEmail = prefs.getString("currentUserEmail", "");
+
+        loadTodaySchedules();
+
+        tvSeeAllSchedule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (getActivity() != null) {
+                    ViewPager2 viewPager = getActivity().findViewById(R.id.viewPager);
+                    viewPager.setCurrentItem(1, true);
+                }
+            }
+        });
 
         RecyclerView rvDoctors = view.findViewById(R.id.rv_doctors_recommendation);
         rvDoctors.setHasFixedSize(true);
@@ -160,5 +190,48 @@ public class HomeFragment extends Fragment {
         });
 
         return view;
+    }
+
+    private void loadTodaySchedules() {
+        String todayStr = ScheduleHelper.getTodayDate();
+        List<Schedule> allUserSchedules = ScheduleHelper.getSchedules(getContext(), loggedInUserEmail);
+        List<Schedule> todaySchedules = new ArrayList<>();
+
+        for (Schedule s : allUserSchedules) {
+            if (s.getDate().equals(todayStr) && s.getStatus().equals("upcoming")) {
+                todaySchedules.add(s);
+            }
+        }
+
+        if (todaySchedules.isEmpty()) {
+            rvTodaySchedule.setVisibility(View.GONE);
+            tvNoScheduleToday.setVisibility(View.VISIBLE);
+        }
+        else {
+            rvTodaySchedule.setVisibility(View.VISIBLE);
+            tvNoScheduleToday.setVisibility(View.GONE);
+            rvTodaySchedule.setAdapter(new ScheduleAdapter(getContext(), todaySchedules, this));
+        }
+    }
+
+    @Override
+    public void onActionClick(Schedule schedule) {
+        new AlertDialog.Builder(getContext())
+                .setTitle("Cancel Appointment")
+                .setMessage("Are you sure you want to cancel your appointment with " + schedule.getDoctorName() + "?")
+                .setPositiveButton("Yes, Cancel", (dialog, which) -> {
+                    // Change status to cancelled in SharedPreferences
+                    ScheduleHelper.updateScheduleStatus(getContext(), loggedInUserEmail, schedule.getId(), "cancelled");
+                    Toast.makeText(getContext(), "Appointment Cancelled", Toast.LENGTH_SHORT).show();
+                    loadTodaySchedules(); // Reload UI so card disappears instantly
+                })
+                .setNegativeButton("No", null)
+                .show();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadTodaySchedules();
     }
 }
