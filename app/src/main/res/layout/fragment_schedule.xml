@@ -4,16 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#F5F7FA">
+    android:background="?android:attr/windowBackground">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayoutSchedule"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
+        android:background="?attr/colorSurface"
         app:tabIndicatorColor="#1056A6"
         app:tabSelectedTextColor="#1056A6"
-        app:tabTextColor="#8E8E93"
+        app:tabTextColor="?attr/colorOnSurfaceVariant"
         app:tabMode="fixed"/>
 
     <androidx.viewpager2.widget.ViewPager2

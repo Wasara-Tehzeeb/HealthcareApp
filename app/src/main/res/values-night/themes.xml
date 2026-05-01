@@ -1,16 +1,16 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme for Dark Mode. -->
+
     <style name="Base.Theme.HealthCareApp" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Lighter Blue for Dark Mode (So it stands out on dark background) -->
+
         <item name="colorPrimary">#5C9CE6</item>
-        <item name="colorOnPrimary">#003258</item> <!-- Dark text on blue header -->
+        <item name="colorOnPrimary">#003258</item>
 
-        <!-- Backgrounds for Dark Mode -->
-        <item name="android:windowBackground">#121212</item> <!-- Standard dark background -->
-        <item name="colorSurface">#1E1E1E</item> <!-- Dark grey for your Cards -->
-        <item name="colorOnSurface">#E0E0E0</item> <!-- Light grey text so it's readable -->
+        <item name="colorSurfaceVariant">#2A2A2E</item>
 
-        <!-- Status Bar Color (Matches dark background) -->
+        <item name="android:windowBackground">#121212</item>
+        <item name="colorSurface">#1E1E1E</item>
+        <item name="colorOnSurface">#E0E0E0</item>
+
         <item name="android:statusBarColor">#121212</item>
     </style>
 </resources>

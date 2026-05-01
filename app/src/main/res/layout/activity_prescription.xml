@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F7FA"
+    android:background="?android:attr/windowBackground"
     android:fillViewport="true">
 
     <LinearLayout
@@ -43,7 +44,7 @@
             android:text="Medicines"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:textColor="#000000"
+            android:textColor="?attr/colorOnSurface"
             android:layout_marginHorizontal="15dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="8dp" />
@@ -60,7 +61,7 @@
             android:layout_height="wrap_content"
             android:text="No medicines prescribed."
             android:textSize="14sp"
-            android:textColor="#8E8E93"
+            android:textColor="?attr/colorOnSurfaceVariant"
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="16dp"
             android:visibility="gone" />
@@ -68,7 +69,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#E0E0E0"
+            android:background="?attr/colorOnSurfaceVariant"
             android:layout_marginHorizontal="20dp"
             android:layout_marginVertical="12dp" />
 
@@ -78,7 +79,7 @@
             android:text="Risk Factor"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:textColor="#000000"
+            android:textColor="?attr/colorOnSurface"
             android:layout_marginHorizontal="15dp"
             android:layout_marginBottom="8dp" />
 
@@ -95,7 +96,7 @@
             android:layout_height="wrap_content"
             android:text="No risk factor."
             android:textSize="14sp"
-            android:textColor="#8E8E93"
+            android:textColor="?attr/colorOnSurfaceVariant"
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="24dp"
             android:visibility="gone" />

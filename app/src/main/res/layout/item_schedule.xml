@@ -7,7 +7,7 @@
     android:layout_marginVertical="8dp"
     app:cardCornerRadius="16dp"
     app:cardElevation="2dp"
-    app:cardBackgroundColor="#FFFFFF">
+    app:cardBackgroundColor="?attr/colorSurface">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,7 +19,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/account"
-            android:background="#E8F0FE"
+            android:background="?attr/colorSurfaceVariant"
             android:padding="6dp"
             app:tint="#1056A6" />
 
@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:text="Jinnah Hospital"
                 android:textSize="11sp"
-                android:textColor="#8E8E93" />
+                android:textColor="?attr/colorOnSurfaceVariant" />
 
             <TextView
                 android:id="@+id/tvDoctor"
@@ -45,7 +45,7 @@
                 android:text="Dr. Zeeshan"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                android:textColor="#000000"
+                android:textColor="?attr/colorOnSurface"
                 android:layout_marginTop="2dp" />
 
             <TextView
@@ -54,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:text="Radiology Specialist"
                 android:textSize="12sp"
-                android:textColor="#1056A6"
+                android:textColor="#448AFF"
                 android:layout_marginTop="2dp" />
 
             <TextView
@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:text="15 May 2024, 09:00 AM"
                 android:textSize="11sp"
-                android:textColor="#8E8E93"
+                android:textColor="?attr/colorOnSurfaceVariant"
                 android:layout_marginTop="4dp" />
         </LinearLayout>
 
@@ -77,14 +77,14 @@
                 android:id="@+id/tvType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#E8F0FE"
+                android:background="?attr/colorSurfaceVariant"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
                 android:paddingTop="4dp"
                 android:paddingBottom="4dp"
                 android:text="Checkup"
                 android:textSize="10sp"
-                android:textColor="#1056A6"
+                android:textColor="#448AFF"
                 android:textStyle="bold"/>
 
             <Button

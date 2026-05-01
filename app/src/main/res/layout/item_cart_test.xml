@@ -6,7 +6,7 @@
     android:orientation="horizontal"
     android:padding="12dp"
     android:layout_marginBottom="4dp"
-    android:background="#F5F7FA">
+    android:background="?android:attr/windowBackground">
 
     <LinearLayout
         android:layout_width="0dp"
@@ -21,7 +21,7 @@
             android:text="Test Name"
             android:textSize="14sp"
             android:textStyle="bold"
-            android:textColor="#000000"/>
+            android:textColor="?attr/colorOnSurface"/>
 
         <TextView
             android:id="@+id/tvCartTestPrep"
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:text="Prep: Fasting"
             android:textSize="11sp"
-            android:textColor="#8E8E93"
+            android:textColor="?attr/colorOnSurfaceVariant"
             android:layout_marginTop="2dp"/>
 
         <TextView

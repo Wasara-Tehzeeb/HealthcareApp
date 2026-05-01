@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#F5F7FA">
+    android:background="?android:attr/windowBackground">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -46,7 +46,8 @@
                 app:cardCornerRadius="75dp"
                 app:cardElevation="4dp"
                 android:layout_gravity="center"
-                android:layout_marginBottom="24dp">
+                android:layout_marginBottom="24dp"
+                app:cardBackgroundColor="?attr/colorSurfaceVariant">
 
                 <ImageView
                     android:id="@+id/ivDetailImage"
@@ -61,10 +62,10 @@
                 android:id="@+id/tvDetailName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="dr. Name"
+                android:text="Dr. Name"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                android:textColor="#000000"
+                android:textColor="?attr/colorOnSurface"
                 android:layout_gravity="center"/>
 
             <TextView
@@ -83,7 +84,7 @@
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="2dp"
-                app:cardBackgroundColor="#FFFFFF"
+                app:cardBackgroundColor="?attr/colorSurface"
                 android:layout_marginBottom="24dp">
 
                 <LinearLayout
@@ -97,7 +98,7 @@
                         android:layout_height="wrap_content"
                         android:text="Hospital"
                         android:textSize="12sp"
-                        android:textColor="#8E8E93"
+                        android:textColor="?attr/colorOnSurfaceVariant"
                         android:layout_marginBottom="4dp"/>
                     <TextView
                         android:id="@+id/tvDetailHospital"
@@ -106,7 +107,7 @@
                         android:text="EverCare Hospital"
                         android:textSize="16sp"
                         android:textStyle="bold"
-                        android:textColor="#000000"
+                        android:textColor="?attr/colorOnSurface"
                         android:layout_marginBottom="16dp"/>
 
                     <TextView
@@ -114,7 +115,7 @@
                         android:layout_height="wrap_content"
                         android:text="Experience"
                         android:textSize="12sp"
-                        android:textColor="#8E8E93"
+                        android:textColor="?attr/colorOnSurfaceVariant"
                         android:layout_marginBottom="4dp"/>
                     <TextView
                         android:id="@+id/tvDetailExperience"
@@ -123,7 +124,7 @@
                         android:text="15 years"
                         android:textSize="16sp"
                         android:textStyle="bold"
-                        android:textColor="#000000"
+                        android:textColor="?attr/colorOnSurface"
                         android:layout_marginBottom="16dp"/>
 
                     <TextView
@@ -131,7 +132,7 @@
                         android:layout_height="wrap_content"
                         android:text="Contact"
                         android:textSize="12sp"
-                        android:textColor="#8E8E93"
+                        android:textColor="?attr/colorOnSurfaceVariant"
                         android:layout_marginBottom="4dp"/>
                     <TextView
                         android:id="@+id/tvDetailPhone"
@@ -140,7 +141,7 @@
                         android:text="+92 300 1234567"
                         android:textSize="16sp"
                         android:textStyle="bold"
-                        android:textColor="#000000"
+                        android:textColor="?attr/colorOnSurface"
                         android:layout_marginBottom="16dp"/>
 
                     <TextView
@@ -148,7 +149,7 @@
                         android:layout_height="wrap_content"
                         android:text="Email"
                         android:textSize="12sp"
-                        android:textColor="#8E8E93"
+                        android:textColor="?attr/colorOnSurfaceVariant"
                         android:layout_marginBottom="4dp"/>
 
                     <LinearLayout
@@ -165,7 +166,7 @@
                             android:text="doctor@hospital.com"
                             android:textSize="16sp"
                             android:textStyle="bold"
-                            android:textColor="#000000"/>
+                            android:textColor="?attr/colorOnSurface"/>
 
                         <ImageButton
                             android:id="@+id/btnEmailDoctor"
@@ -186,16 +187,16 @@
                 android:text="About"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:textColor="#000000"
+                android:textColor="?attr/colorOnSurface"
                 android:layout_marginBottom="8dp"/>
 
             <TextView
                 android:id="@+id/tvDetailBio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Doctor bio goes here..."
+                android:text="Doctor bio..."
                 android:textSize="14sp"
-                android:textColor="#555555"
+                android:textColor="?attr/colorOnSurfaceVariant"
                 android:lineSpacingExtra="4dp"/>
 
             <com.google.android.material.button.MaterialButton

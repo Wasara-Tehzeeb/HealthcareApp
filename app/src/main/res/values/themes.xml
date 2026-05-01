@@ -1,16 +1,16 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+
     <style name="Base.Theme.HealthCareApp" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Your Medical Blue Header Color -->
+
         <item name="colorPrimary">#0C4280</item>
-        <item name="colorOnPrimary">#FFFFFF</item> <!-- White text on blue header -->
+        <item name="colorOnPrimary">#FFFFFF</item>
 
-        <!-- Backgrounds for Light Mode -->
-        <item name="android:windowBackground">#F4F6F9</item> <!-- Light grey background -->
-        <item name="colorSurface">#FFFFFF</item> <!-- White color for your Cards -->
-        <item name="colorOnSurface">#1A1A1A</item> <!-- Dark text color -->
+        <item name="colorSurfaceVariant">#F0F2F5</item>
 
-        <!-- Status Bar Color (Matches header) -->
+        <item name="android:windowBackground">#F4F6F9</item>
+        <item name="colorSurface">#FFFFFF</item>
+        <item name="colorOnSurface">#1A1A1A</item>
+
         <item name="android:statusBarColor">#0C4280</item>
     </style>
 
