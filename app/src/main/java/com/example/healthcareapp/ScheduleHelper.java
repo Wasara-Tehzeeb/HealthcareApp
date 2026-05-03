@@ -15,6 +15,62 @@ public class ScheduleHelper {
     private static final String PREF_NAME = "HealthCarePrefs";
     private static final String KEY_PREFIX = "schedules_";
 
+    public static void autoExpireUpcomingSchedules(Context context, String email) {
+        List<Schedule> list = getSchedules(context, email);
+        Calendar currentTime = Calendar.getInstance();
+        boolean changed = false;
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
+        sdf.setLenient(false); // Strict parsing
+
+        Calendar now = Calendar.getInstance();
+        String currentTimeStr = String.format(Locale.getDefault(), "%02d:%02d", now.get(Calendar.HOUR_OF_DAY), now.get(Calendar.MINUTE));
+        String todayDate = getTodayDate();
+
+        for (int i = 0; i < list.size(); i++) {
+            Schedule s = list.get(i);
+
+            if (s.getStatus().equals("upcoming")) {
+                try {
+                    Date scheduleDate = sdf.parse(s.getDate() + " " + s.getTime());
+
+                    if (scheduleDate != null && scheduleDate.before(currentTime.getTime())) {
+                        Schedule expiredSchedule = new Schedule(
+                                s.getId(), s.getDoctorName(), s.getSpecialty(),
+                                s.getHospital(), s.getDate(), s.getTime(),
+                                s.getType(), "cancelled"
+                        );
+                        list.set(i, expiredSchedule);
+                        changed = true;
+
+                        String missedMessage = "You missed your " + s.getType().toLowerCase()
+                                + " appointment with " + s.getDoctorName()
+                                + " scheduled on " + formatDisplayDate(s.getDate())
+                                + " at " + formatTime(s.getTime()) + ".";
+
+                        NotificationHelper.saveNotification(context, email,
+                                new Notification(
+                                        "NM" + System.currentTimeMillis(),
+                                        "Missed Appointment",
+                                        missedMessage,
+                                        currentTimeStr,
+                                        todayDate,
+                                        s.getType(),
+                                        s.getDoctorName()
+                                ));
+                    }
+                }
+                catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        if (changed) {
+            saveList(context, email, list);
+        }
+    }
+
     public static void saveSchedule(Context context, String email, Schedule schedule) {
         List<Schedule> list = getSchedules(context, email);
         list.add(schedule);

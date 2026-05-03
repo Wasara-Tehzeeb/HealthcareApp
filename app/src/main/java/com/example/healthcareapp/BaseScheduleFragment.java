@@ -61,6 +61,10 @@ public abstract class BaseScheduleFragment extends Fragment implements ScheduleA
     }
 
     protected void loadData() {
+        if (!email.isEmpty()) {
+            ScheduleHelper.autoExpireUpcomingSchedules(getContext(), email);
+        }
+
         List<Schedule> list = getSchedulesList();
         if (list.isEmpty()) {
             recyclerView.setVisibility(View.GONE);
@@ -85,18 +89,37 @@ public abstract class BaseScheduleFragment extends Fragment implements ScheduleA
     public void onActionClick(Schedule schedule) {
         if (schedule.getStatus().equals("completed")) {
             return;
-        } else if (schedule.getStatus().equals("upcoming")) {
+        }
+        else if (schedule.getStatus().equals("upcoming")) {
             showCancelDialog(schedule);
-        } else if (schedule.getStatus().equals("cancelled")) {
+        }
+        else if (schedule.getStatus().equals("cancelled")) {
             showRescheduleDialog(schedule);
         }
     }
 
     private void showCancelDialog(Schedule schedule) {
+        String[] options = {"Cancel Appointment", "Mark as Completed"};
+
+        new AlertDialog.Builder(getContext())
+                .setTitle("Choose Action")
+                .setItems(options, (dialog, which) -> {
+                    if (which == 0) {
+                        cancelAppointment(schedule);
+                    }
+                    else if (which == 1) {
+                        completeAppointment(schedule);
+                    }
+                })
+                .setNegativeButton("Back", null)
+                .show();
+    }
+
+    private void cancelAppointment(Schedule schedule) {
         new AlertDialog.Builder(getContext())
                 .setTitle("Cancel Appointment")
-                .setMessage("Are you sure you want to cancel?")
-                .setPositiveButton("Yes", (dialog, which) -> {
+                .setMessage("Are you sure you want to cancel this appointment?")
+                .setPositiveButton("Yes, Cancel", (dialog, which) -> {
                     ScheduleHelper.updateScheduleStatus(getContext(), email, schedule.getId(), "cancelled");
 
                     String cancelMessage = "Your " + schedule.getType().toLowerCase() + " with " + schedule.getDoctorName() + " has been cancelled.";
@@ -119,7 +142,39 @@ public abstract class BaseScheduleFragment extends Fragment implements ScheduleA
                     loadData();
                     Toast.makeText(getContext(), "Appointment Cancelled", Toast.LENGTH_SHORT).show();
                 })
-                .setNegativeButton("No", null).show();
+                .setNegativeButton("No", null)
+                .show();
+    }
+
+    private void completeAppointment(Schedule schedule) {
+        new AlertDialog.Builder(getContext())
+                .setTitle("Mark as Completed")
+                .setMessage("Are you sure you want to mark this appointment as completed?")
+                .setPositiveButton("Yes, Complete", (dialog, which) -> {
+                    ScheduleHelper.updateScheduleStatus(getContext(), email, schedule.getId(), "completed");
+
+                    String completeMessage = "Your " + schedule.getType().toLowerCase() + " with " + schedule.getDoctorName() + " has been completed.";
+                    Calendar now = Calendar.getInstance();
+                    String currentTimeStr = String.format(Locale.getDefault(), "%02d:%02d", now.get(Calendar.HOUR_OF_DAY), now.get(Calendar.MINUTE));
+
+                    NotificationHelper.saveNotification(getContext(), email,
+                            new Notification(
+                                    "NM" + System.currentTimeMillis(),
+                                    "Appointment Completed",
+                                    completeMessage,
+                                    currentTimeStr,
+                                    ScheduleHelper.getTodayDate(),
+                                    schedule.getType(),
+                                    schedule.getDoctorName()
+                            ));
+
+                    showSystemNotification("Appointment Completed", completeMessage);
+
+                    loadData();
+                    Toast.makeText(getContext(), "Appointment Completed", Toast.LENGTH_SHORT).show();
+                })
+                .setNegativeButton("No", null)
+                .show();
     }
 
     private void showRescheduleDialog(Schedule schedule) {

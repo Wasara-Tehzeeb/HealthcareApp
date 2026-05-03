@@ -46,7 +46,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
         holder.tvType.setText(s.getType());
 
         if (s.getStatus().equals("upcoming")) {
-            holder.btnAction.setText("Cancel");
+            holder.btnAction.setText("Update");
             holder.btnAction.setVisibility(View.VISIBLE);
             holder.btnAction.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FF5252")));
             holder.btnAction.setTextColor(Color.WHITE);

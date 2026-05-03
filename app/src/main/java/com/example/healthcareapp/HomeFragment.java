@@ -220,10 +220,10 @@ public class HomeFragment extends Fragment implements ScheduleAdapter.OnActionLi
                 .setTitle("Cancel Appointment")
                 .setMessage("Are you sure you want to cancel your appointment with " + schedule.getDoctorName() + "?")
                 .setPositiveButton("Yes, Cancel", (dialog, which) -> {
-                    // Change status to cancelled in SharedPreferences
+
                     ScheduleHelper.updateScheduleStatus(getContext(), loggedInUserEmail, schedule.getId(), "cancelled");
                     Toast.makeText(getContext(), "Appointment Cancelled", Toast.LENGTH_SHORT).show();
-                    loadTodaySchedules(); // Reload UI so card disappears instantly
+                    loadTodaySchedules();
                 })
                 .setNegativeButton("No", null)
                 .show();
