@@ -14,10 +14,18 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.DoctorView
 
     private Doctor[] doctorList;
     private Context context;
+    private boolean isAdmin;
 
     public DoctorAdapter(Context context, Doctor[] doctorList) {
         this.context = context;
         this.doctorList = doctorList;
+        this.isAdmin = false;
+    }
+
+    public DoctorAdapter(Context context, Doctor[] doctorList, boolean isAdmin) {
+        this.context = context;
+        this.doctorList = doctorList;
+        this.isAdmin = isAdmin;
     }
 
     @NonNull
@@ -49,6 +57,7 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.DoctorView
                 intent.putExtra("rating", doctor.getRating());
                 intent.putExtra("experience", doctor.getExperience());
                 intent.putExtra("bio", doctor.getBio());
+                intent.putExtra("isAdmin", isAdmin);
 
                 context.startActivity(intent);
             }

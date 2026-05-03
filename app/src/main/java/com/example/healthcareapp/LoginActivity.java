@@ -22,6 +22,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private static final String PREF_NAME = "HealthCarePrefs";
     private static final String USERS_KEY = "users_data";
+    private static final String ADMIN_EMAIL = "wasara@gmail.com";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,8 +70,14 @@ public class LoginActivity extends AppCompatActivity {
         editor.putBoolean("isLoggedIn", true);
         editor.putString("currentUserName", name);
         editor.putString("currentUserEmail", email);
+        editor.putBoolean("isAdmin", email.equalsIgnoreCase(ADMIN_EMAIL));
         editor.apply();
     }
+
+    private boolean isAdmin(String email) {
+        return email.equalsIgnoreCase(ADMIN_EMAIL);
+    }
+
     private void validateAndLogin() {
         String name = etName.getText().toString().trim();
         String email = etEmail.getText().toString().trim();
@@ -104,10 +111,17 @@ public class LoginActivity extends AppCompatActivity {
         saveCurrentUserSession(name, email);
         showToast("Login successful!");
 
-        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+        Intent intent;
+        if (isAdmin(email)) {
+            intent = new Intent(LoginActivity.this, AdminActivity.class);
+        }
+        else {
+            intent = new Intent(LoginActivity.this, HomeActivity.class);
+        }
         startActivity(intent);
         finish();
     }
+
     private void showToast(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }

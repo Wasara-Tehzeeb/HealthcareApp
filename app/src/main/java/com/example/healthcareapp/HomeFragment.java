@@ -71,16 +71,7 @@ public class HomeFragment extends Fragment implements ScheduleAdapter.OnActionLi
         LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         rvDoctors.setLayoutManager(horizontalLayoutManager);
 
-        Doctor[] doctorsList = new Doctor[] {
-                new Doctor("Dr. Sara", "Eye Specialist", R.drawable.account, "Evercare Hospital", "+92 300 1111111","sara@health.com",4.8,"10 years", "Has over 15 years of experience in ophthalmology. She specializes in retinal surgeries and general eye checkups."),
-                new Doctor("Dr. Zeeshan", "Radiology Specialist", R.drawable.account, "Jinnah Hospital", "+92 300 2222222","zeeshan@health.com",5.0,"12 years", "Leading radiologist with expertise in MRI and CT scan interpretations. Known for accurate diagnostics."),
-                new Doctor("Dr. Ahad", "Cardiologist", R.drawable.account, "Services Hospital", "+92 300 3333333","ahad@health.com",4.0,"6 years", "Specializes in cardiovascular diseases. Performs echocardiograms and stress tests regularly."),
-                new Doctor("Dr. Emaan", "Dermatologist", R.drawable.account, "Shaikh Zayed Hospital", "+92 300 4444444","emaan@health.com",4.5,"9 years", "Expert in treating acne, eczema, and cosmetic dermatology. Highly rated by patients."),
-                new Doctor("Dr. Khalid", "General Physician", R.drawable.account, "Farooq Hospital", "+92 300 5555555","khalid@health.com",3.9,"3 years", "Expert in family medicine and routine health checkups. Provides comprehensive primary care for all ages."),
-                new Doctor("Dr. Maria", "Pediatrician", R.drawable.account, "Jinnah Hospital", "+92 300 6666666","maria@health.com",4.7,"15 years", "Highly trusted child specialist. Focuses on childhood vaccinations, growth monitoring, and pediatric infections."),
-                new Doctor("Dr. Wahaj", "Orthopedic Surgeon", R.drawable.account, "Services Hospital", "+92 300 7777777","wahaj@health.com",5.0,"20 years", "Specializes in bone fractures, joint replacements, and sports injuries. Uses minimally invasive surgical techniques."),
-                new Doctor("Dr. Hina", "Gynecologist", R.drawable.account, "Evercare Hospital", "+92 300 8888888","hina@health.com",4.6 ,"11 years","Dedicated to women's health, pregnancy care, and reproductive health issues. Provides compassionate and confidential care.")
-        };
+        Doctor[] doctorsList = DoctorHelper.getDoctorsArray(getContext());
 
         DoctorAdapter doctorAdapter = new DoctorAdapter(getContext(), doctorsList);
         rvDoctors.setAdapter(doctorAdapter);

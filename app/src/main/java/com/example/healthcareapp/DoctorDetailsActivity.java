@@ -3,6 +3,7 @@ package com.example.healthcareapp;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -30,6 +31,12 @@ public class DoctorDetailsActivity extends AppCompatActivity {
         String email = getIntent().getStringExtra("email");
         String experience = getIntent().getStringExtra("experience");
         double rating = getIntent().getDoubleExtra("rating", 0.0);
+        boolean isAdmin = getIntent().getBooleanExtra("isAdmin", false);
+        MaterialButton btnBookAppointment = findViewById(R.id.btnBookAppointment);
+
+        if (isAdmin) {
+            btnBookAppointment.setVisibility(View.GONE);
+        }
 
         ImageView ivImage = findViewById(R.id.ivDetailImage);
         TextView tvName = findViewById(R.id.tvDetailName);
@@ -43,7 +50,6 @@ public class DoctorDetailsActivity extends AppCompatActivity {
 
         ImageButton btnCallDoctor = findViewById(R.id.btnCallDoctor);
         ImageButton btnEmailDoctor = findViewById(R.id.btnEmailDoctor);
-        MaterialButton btnBookAppointment = findViewById(R.id.btnBookAppointment);
 
         ivImage.setImageResource(imageResId);
         tvName.setText(name);

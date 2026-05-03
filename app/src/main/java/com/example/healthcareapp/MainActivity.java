@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         addDefaultTestUsers();
         addDefaultSchedules();
         addDefaultNotifications();
+        DoctorHelper.seedDefaultDoctors(this);
 
         new Handler().postDelayed(() -> {
             SharedPreferences sharedPreferences = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
@@ -47,7 +48,13 @@ public class MainActivity extends AppCompatActivity {
 
             Intent intent;
             if (isLoggedIn) {
-                intent = new Intent(MainActivity.this, HomeActivity.class);
+                boolean isAdmin = sharedPreferences.getBoolean("isAdmin", false);
+                if (isAdmin) {
+                    intent = new Intent(MainActivity.this, AdminActivity.class);
+                }
+                else {
+                    intent = new Intent(MainActivity.this, HomeActivity.class);
+                }
             }
             else {
                 intent = new Intent(MainActivity.this, ChoiceActivity.class);
@@ -68,7 +75,8 @@ public class MainActivity extends AppCompatActivity {
 
             String defaultUsers = "Fatima Ahmed,fatima@gmail.com,fatima123;" +
                     "Hamza Khan,hamza@gmail.com,hamza456;" +
-                    "Zainab Ali,zainab@gmail.com,zainab789";
+                    "Zainab Ali,zainab@gmail.com,zainab789;" +
+                    "Admin Wasara,wasara@gmail.com,wasara14";
 
             SharedPreferences.Editor editor = sharedPreferences.edit();
 

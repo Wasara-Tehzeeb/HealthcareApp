@@ -7,11 +7,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-public class ViewPagerAdapter extends FragmentStateAdapter {
+public class AdminAdapter extends FragmentStateAdapter {
     private final String userName;
     private final String userEmail;
     private final String userPassword;
-    public ViewPagerAdapter(@NonNull FragmentActivity fa, String name, String email, String password) {
+    public AdminAdapter(@NonNull FragmentActivity fa, String name, String email, String password) {
         super(fa);
         this.userName = name;
         this.userEmail = email;
@@ -21,7 +21,7 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
     @Override
     public Fragment createFragment(int position) {
         if (position == 3) {
-            SettingsFragment settingsFragment = new SettingsFragment();
+            AdminSettingsFragment settingsFragment = new AdminSettingsFragment();
             Bundle bundle = new Bundle();
             bundle.putString("USERNAME", userName);
             bundle.putString("EMAIL", userEmail);
@@ -31,10 +31,10 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
         }
 
         switch (position) {
-            case 0: return new HomeFragment();
+            case 0: return new AdminHomeFragment();
             case 1: return new ScheduleFragment();
             case 2: return new MessageFragment();
-            case 3: return new SettingsFragment();
+            case 3: return new AdminSettingsFragment();
             default: return new HomeFragment();
         }
     }
