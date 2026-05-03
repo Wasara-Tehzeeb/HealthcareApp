@@ -15,6 +15,12 @@
         android:theme="@style/Theme.HealthCareApp"
         tools:replace="android:allowBackup,android:fullBackupContent">
         <activity
+            android:name=".RemoveUserActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddDoctorActivity"
+            android:exported="false" />
+        <activity
             android:name=".RemoveDoctorActivity"
             android:exported="false" />
         <activity

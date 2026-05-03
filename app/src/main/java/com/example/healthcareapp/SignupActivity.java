@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -19,6 +20,7 @@ import com.google.android.material.button.MaterialButton;
 public class SignupActivity extends AppCompatActivity {
     EditText etName, etEmail, etPass, etConfirm;
     MaterialButton btnLogin;
+    TextView btnGoToLogin;
 
     private static final String PREF_NAME = "HealthCarePrefs";
     private static final String USERS_KEY = "users_data";
@@ -33,6 +35,15 @@ public class SignupActivity extends AppCompatActivity {
         etPass = findViewById(R.id.etPass);
         etConfirm = findViewById(R.id.etConfirm);
         btnLogin = findViewById(R.id.btnLogin);
+        btnGoToLogin = findViewById(R.id.btnGoToLogin);
+
+        btnGoToLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override

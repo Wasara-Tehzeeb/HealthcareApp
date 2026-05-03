@@ -83,11 +83,27 @@ public class AdminHomeFragment extends Fragment {
             }
         });
 
+        btnAddDoctor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), AddDoctorActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         btnRemoveDoctor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), RemoveDoctorActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnRemoveUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), RemoveUserActivity.class);
                 startActivity(intent);
             }
         });

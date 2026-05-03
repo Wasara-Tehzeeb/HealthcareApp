@@ -32,15 +32,13 @@ public class AdminAdapter extends FragmentStateAdapter {
 
         switch (position) {
             case 0: return new AdminHomeFragment();
-            case 1: return new ScheduleFragment();
-            case 2: return new MessageFragment();
-            case 3: return new AdminSettingsFragment();
+            case 1: return new AdminSettingsFragment();
             default: return new HomeFragment();
         }
     }
 
     @Override
     public int getItemCount() {
-        return 4;
+        return 2;
     }
 }

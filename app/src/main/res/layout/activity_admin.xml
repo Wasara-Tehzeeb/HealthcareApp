@@ -53,7 +53,7 @@
                 android:layout_height="match_parent"
                 android:padding="6dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:src="@drawable/notifications"
+                android:src="@drawable/settings"
                 android:scaleType="fitCenter"
                 android:contentDescription="Notifications"
                 app:tint="#1063E0" />

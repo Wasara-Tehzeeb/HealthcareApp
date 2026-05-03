@@ -144,5 +144,35 @@
             app:backgroundTint="#4A90D9"
             app:cornerRadius="12dp" />
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Don't have an account?"
+            android:textSize="15sp"
+            android:textColor="#666666" />
+
+        <TextView
+            android:id="@+id/btnGoToRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" Register"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="#0C4280"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless" />
+
+    </LinearLayout>
+
     </LinearLayout>
 </ScrollView>

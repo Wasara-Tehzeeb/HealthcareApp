@@ -54,7 +54,7 @@ public class AdminActivity extends AppCompatActivity {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
 
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_admin);
 
         tabLayout = findViewById(R.id.tabLayout);
         viewPager = findViewById(R.id.viewPager);
@@ -64,7 +64,7 @@ public class AdminActivity extends AppCompatActivity {
         btnNotification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewPager.setCurrentItem(2, true);
+                viewPager.setCurrentItem(1, true);
             }
         });
 
@@ -89,14 +89,6 @@ public class AdminActivity extends AppCompatActivity {
                             tab.setIcon(R.drawable.home);
                             break;
                         case 1:
-                            tab.setText("Schedule");
-                            tab.setIcon(R.drawable.schedule);
-                            break;
-                        case 2:
-                            tab.setText("Messages");
-                            tab.setIcon(R.drawable.messages);
-                            break;
-                        case 3:
                             tab.setText("Settings");
                             tab.setIcon(R.drawable.settings);
                             break;
