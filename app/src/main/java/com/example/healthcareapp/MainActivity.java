@@ -149,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
             cal.add(Calendar.DAY_OF_MONTH, -1);
             String fourDaysAgo = sdf.format(cal.getTime());
 
-            ScheduleHelper.saveSchedule(this, "fatima@gmail.com", new Schedule("F001", "Dr. Zeeshan", "Radiology Specialist", "Jinnah Hospital", today, "09:00", "Checkup", "upcoming"));
+            ScheduleHelper.saveSchedule(this, "fatima@gmail.com", new Schedule("F001", "Dr. Zeeshan", "Radiology Specialist", "Jinnah Hospital", today, "09:00", "Checkup", "completed"));
             ScheduleHelper.saveSchedule(this, "fatima@gmail.com", new Schedule("F002", "Dr. Ahad", "Cardiologist", "Services Hospital", tomorrow, "14:00", "Consultation", "upcoming"));
             ScheduleHelper.saveSchedule(this, "fatima@gmail.com", new Schedule("F003", "Dr. Hina", "Gynecologist", "Evercare Hospital", today, "16:00", "Follow-up", "upcoming"));
             ScheduleHelper.saveSchedule(this, "fatima@gmail.com", new Schedule("F004", "Dr. Emaan", "Dermatologist", "Shaikh Zayed Hospital", twoDaysAgo, "11:00", "Follow-up", "completed"));
@@ -157,14 +157,14 @@ public class MainActivity extends AppCompatActivity {
             ScheduleHelper.saveSchedule(this, "fatima@gmail.com", new Schedule("F006", "Dr. Sara", "Eye Specialist", "Evercare Hospital", twoDaysAgo, "15:00", "Checkup", "cancelled"));
             ScheduleHelper.saveSchedule(this, "fatima@gmail.com", new Schedule("F007", "Dr. Wahaj", "Orthopedic Surgeon", "Services Hospital", fourDaysAgo, "08:30", "Consultation", "cancelled"));
 
-            ScheduleHelper.saveSchedule(this, "hamza@gmail.com", new Schedule("H001", "Dr. Wahaj", "Orthopedic Surgeon", "Services Hospital", today, "10:30", "Consultation", "upcoming"));
+            ScheduleHelper.saveSchedule(this, "hamza@gmail.com", new Schedule("H001", "Dr. Wahaj", "Orthopedic Surgeon", "Services Hospital", today, "17:30", "Consultation", "upcoming"));
             ScheduleHelper.saveSchedule(this, "hamza@gmail.com", new Schedule("H002", "Dr. Maria", "Pediatrician", "Jinnah Hospital", tomorrow, "11:00", "Checkup", "upcoming"));
             ScheduleHelper.saveSchedule(this, "hamza@gmail.com", new Schedule("H003", "Dr. Zeeshan", "Radiology Specialist", "Jinnah Hospital", twoDaysAgo, "09:00", "Checkup", "completed"));
             ScheduleHelper.saveSchedule(this, "hamza@gmail.com", new Schedule("H004", "Dr. Emaan", "Dermatologist", "Shaikh Zayed Hospital", fourDaysAgo, "14:00", "Follow-up", "completed"));
             ScheduleHelper.saveSchedule(this, "hamza@gmail.com", new Schedule("H005", "Dr. Khalid", "General Physician", "Farooq Hospital", threeDaysAgo, "09:00", "Checkup", "cancelled"));
 
             ScheduleHelper.saveSchedule(this, "zainab@gmail.com", new Schedule("Z001", "Dr. Hina", "Gynecologist", "Evercare Hospital", tomorrow, "11:00", "Checkup", "upcoming"));
-            ScheduleHelper.saveSchedule(this, "zainab@gmail.com", new Schedule("Z002", "Dr. Sara", "Eye Specialist", "Evercare Hospital", today, "13:00", "Consultation", "upcoming"));
+            ScheduleHelper.saveSchedule(this, "zainab@gmail.com", new Schedule("Z002", "Dr. Sara", "Eye Specialist", "Evercare Hospital", today, "20:00", "Consultation", "upcoming"));
             ScheduleHelper.saveSchedule(this, "zainab@gmail.com", new Schedule("Z003", "Dr. Ahad", "Cardiologist", "Services Hospital", twoDaysAgo, "15:00", "Follow-up", "completed"));
             ScheduleHelper.saveSchedule(this, "zainab@gmail.com", new Schedule("Z004", "Dr. Khalid", "General Physician", "Farooq Hospital", threeDaysAgo, "10:00", "Checkup", "completed"));
             ScheduleHelper.saveSchedule(this, "zainab@gmail.com", new Schedule("Z005", "Dr. Wahaj", "Orthopedic Surgeon", "Services Hospital", twoDaysAgo, "12:00", "Consultation", "cancelled"));

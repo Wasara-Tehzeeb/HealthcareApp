@@ -1,5 +1,6 @@
 package com.example.healthcareapp;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -22,6 +23,7 @@ public class HomeActivity extends AppCompatActivity {
     ViewPager2 viewPager;
     TextView tvUserName;
     ImageButton btnNotification;
+    ImageButton btn_logout;
 
     private static final String PREFS_NAME = "HealthAppPrefs";
     private static final String KEY_DARK_MODE = "isDarkMode";
@@ -60,6 +62,9 @@ public class HomeActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.viewPager);
         tvUserName = findViewById(R.id.tvUserName);
         btnNotification = findViewById(R.id.btn_notification);
+        btn_logout = findViewById(R.id.btn_logout);
+
+        btn_logout.setOnClickListener(v -> showLogoutDialog());
 
         btnNotification.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,6 +108,27 @@ public class HomeActivity extends AppCompatActivity {
                     }
                 }
         ).attach();
+    }
+
+    private void showLogoutDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle("Log Out")
+                .setMessage("Are you sure you want to log out?")
+                .setPositiveButton("Yes", (dialog, which) -> {
+                    SharedPreferences.Editor editor = getSharedPreferences("HealthCarePrefs", MODE_PRIVATE).edit();
+                    editor.remove("isLoggedIn");
+                    editor.remove("currentUserName");
+                    editor.remove("currentUserEmail");
+                    editor.remove("isAdmin");
+                    editor.apply();
+
+                    Intent intent = new Intent(HomeActivity.this, ChoiceActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    finish();
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
     }
     private String getPasswordFromEmail(String email) {
         if (email == null || email.isEmpty()) return "";

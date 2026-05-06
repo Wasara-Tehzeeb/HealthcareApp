@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.LayoutInflater;
@@ -30,7 +31,7 @@ public class SettingsFragment extends Fragment {
     private TextView tvUsername, tvEmail, tvPassword;
     private TextView tvDob, tvBloodGroup, tvAllergies;
     private TextView tvCurrentTextSize;
-    private LinearLayout btnChangeName, btnChangeEmail, btnChangePassword, btnTextSize;
+    private LinearLayout btnChangeName, btnChangeEmail, btnChangePassword, btnTextSize, btnAiAssistant;
     private LinearLayout btnDob, btnBloodGroup, btnAllergies;
     private SwitchMaterial switchDarkMode;
     private MaterialButton btnLogout;
@@ -69,6 +70,7 @@ public class SettingsFragment extends Fragment {
         tvCurrentTextSize = view.findViewById(R.id.tv_current_text_size);
         btnTextSize = view.findViewById(R.id.btn_text_size);
         btnLogout = view.findViewById(R.id.btn_logout);
+        btnAiAssistant = view.findViewById(R.id.btn_ai_assistant);
 
         loadUserDataFromSharedPreferences();
         loadHealthProfileData(); // NEW
@@ -156,6 +158,19 @@ public class SettingsFragment extends Fragment {
         btnAllergies.setOnClickListener(v -> showAllergiesDialog());
 
         btnLogout.setOnClickListener(v -> showLogoutDialog());
+        btnAiAssistant.setOnClickListener(v -> {
+            if (getContext() == null) return;
+            new AlertDialog.Builder(getContext())
+                    .setTitle("AI Health Assistant")
+                    .setMessage("You will be redirected to an AI search engine. Please remember that AI is not a real doctor. Always consult your prescribed physician for medical decisions.")
+                    .setPositiveButton("Continue", (dialog, which) -> {
+                        Intent aiIntent = new Intent(Intent.ACTION_VIEW);
+                        aiIntent.setData(Uri.parse("https://duckduckgo.com/chat"));
+                        startActivity(aiIntent);
+                    })
+                    .setNegativeButton("Cancel", null)
+                    .show();
+        });
     }
     private void showDatePickerDialog() {
         Calendar calendar = Calendar.getInstance();
@@ -361,6 +376,7 @@ public class SettingsFragment extends Fragment {
                     editor.remove("isLoggedIn");
                     editor.remove("currentUserName");
                     editor.remove("currentUserEmail");
+                    editor.remove("isAdmin");
                     editor.apply();
 
                     Intent intent = new Intent(requireActivity(), ChoiceActivity.class);

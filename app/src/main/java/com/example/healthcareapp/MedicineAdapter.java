@@ -3,6 +3,7 @@ package com.example.healthcareapp;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,8 +13,15 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.Medici
 
     private List<Medicine> medicineList;
 
-    public MedicineAdapter(List<Medicine> medicineList) {
+    private OnDeleteClickListener deleteListener;
+
+    public interface OnDeleteClickListener {
+        void onDeleteClick(int position);
+    }
+
+    public MedicineAdapter(List<Medicine> medicineList, OnDeleteClickListener listener) {
         this.medicineList = medicineList;
+        this.deleteListener = listener;
     }
 
     @NonNull
@@ -29,6 +37,12 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.Medici
         holder.tvMedName.setText(med.name);
         holder.tvDosage.setText("Dosage: " + med.dosage);
         holder.tvFrequency.setText("Freq: " + med.frequency);
+
+        holder.btnDelete.setOnClickListener(v -> {
+            if (deleteListener != null) {
+                deleteListener.onDeleteClick(position);
+            }
+        });
     }
 
     @Override
@@ -38,12 +52,14 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.Medici
 
     public static class MedicineViewHolder extends RecyclerView.ViewHolder {
         TextView tvMedName, tvDosage, tvFrequency;
+        ImageButton btnDelete;
 
         public MedicineViewHolder(@NonNull View itemView) {
             super(itemView);
             tvMedName = itemView.findViewById(R.id.tvMedName);
             tvDosage = itemView.findViewById(R.id.tvDosage);
             tvFrequency = itemView.findViewById(R.id.tvFrequency);
+            btnDelete = itemView.findViewById(R.id.btnDeleteMed);
         }
     }
 }
